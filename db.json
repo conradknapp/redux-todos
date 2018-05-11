@@ -1,0 +1,19 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "text": "Design UX",
+      "isComplete": true
+    },
+    {
+      "id": 2,
+      "text": "Add Components",
+      "isComplete": false
+    },
+    {
+      "id": 3,
+      "text": "Hook up to API",
+      "isComplete": false
+    }
+  ]
+}

@@ -1,35 +1,22 @@
+import * as actionTypes from '../actions/types'
+
 const initialState = {
-  todos: [
-    {
-      id: 1,
-      text: "Design UI",
-      isComplete: true
-    },
-    {
-      id: 2,
-      text: "Add Components",
-      isComplete: false
-    },
-    {
-      id: 3,
-      text: "Hook up to API",
-      isComplete: false
-    }
-  ],
-  currentTodo: "temp"
+  todos: [],
+  currentTodo: ""
 };
 
-const ADD_TODO = "ADD_TODO";
-const CURRENT_UPDATE = "CURRENT_UPDATE";
-
-export const updateCurrent = val => ({ type: CURRENT_UPDATE, payload: val });
+export const updateCurrent = val => ({ type: actionTypes.CURRENT_UPDATE, payload: val });
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case ADD_TODO:
+    case actionTypes.ADD_TODO:
       return { ...state, todos: state.todos.concat(action.payload) };
-    case CURRENT_UPDATE:
+    case actionTypes.CURRENT_UPDATE:
       return { ...state, currentTodo: action.payload };
+    case actionTypes.GET_TODOS:
+      action.payload.then(data => {
+         return { ...state, data };
+      });
     default:
       return state;
   }

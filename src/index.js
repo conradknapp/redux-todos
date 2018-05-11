@@ -4,36 +4,18 @@ import "./index.css";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 
-import store from "./store";
-// import { bindActionCreators } from "redux";
-// import { updateCurrent } from "./reducers/todo";
+import { createStore, applyMiddleware } from "redux";
+import reduxThunk from 'redux-thunk';
 import { Provider } from "react-redux";
+import todo_reducer from "./reducers/todo";
 
-// const todoChangeHandler = val => store.dispatch(updateCurrent(val));
-
-// const actions = bindActionCreators({ updateCurrent }, store.dispatch);
+const storeWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={storeWithMiddleware(todo_reducer)}>
     <App />
   </Provider>,
   document.getElementById("root")
 );
-
-// const render = () => {
-//   const state = store.getState();
-//   ReactDOM.render(
-//     <App
-//       todos={state.todos}
-//       currentTodo={state.currentTodo}
-//       todoChangeHandler={actions.updateCurrent}
-//     />,
-//     document.getElementById("root")
-//   );
-// };
-
-// render();
-
-// store.subscribe(render);
 
 registerServiceWorker();
